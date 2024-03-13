@@ -1,0 +1,94 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+
+$theme-colors: (
+  // primary: $gray-600,
+  // primary: $teal;
+  // primary: $green
+  primary: $green
+);
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+/* https://colors.muz.li/palette/486255/624f48/453732/494d62/333645 */
+$primary: #486255;
+$secondary: #624f48;
+$light-green: #1abc9c;
+
+$primary-light: #98b3a6;
+
+$text-color-green: #5d7568;
+$text-color-white: #d5deda;
+
+$grid-column-gap: 0;
+$grid-row-gap: 0;
+
+:root {
+  --primary-bg-color: #{$primary};
+  --text-color-dark: #{$text-color-green};
+  --primary-bg-light: #{$primary-light};
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; // 10px/16px = 62.5% -> 1rem = 10px
+}
+
+body {
+  font-family: $font-family-base;
+  font-weight: 300;
+  line-height: 1.6;
+
+  font-size: 200%;
+}
+
+.grid-container {
+  display: grid;
+  column-gap: $grid-column-gap;
+  row-gap: $grid-row-gap;
+  grid-template-rows: 10rem minmax(20rem, calc(100vh - 20rem)) 10rem;
+  grid-template-columns:
+    [sidebar-start] 8rem [sidebar-end full-start] minmax(6rem, 1fr)
+    [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end])
+    [center-end] minmax(6rem, 1fr)
+    [full-end];
+}
+
+.sidebar {
+  background-color: $secondary;
+  grid-column: sidebar-start / sidebar-end;
+  grid-row: 1 / -1;
+  color: $text-color-white;
+}
+
+.header {
+  background-color: $primary;
+  // grid-column: full-start / full-end;
+  color: $text-color-white;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.content {
+  grid-column: full-start / full-end;
+  grid-row: 1 / -1;
+  overflow-y: auto;
+}
+
+.footer {
+  background-color: $primary;
+  grid-column: full-start / full-end;
+  color: $text-color-white;
+}

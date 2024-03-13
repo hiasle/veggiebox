@@ -1,0 +1,21 @@
+#wrapper {
+  overflow-x: hidden;
+}
+
+#side-wrapper {
+  min-height: 100vh;
+  transition: margin 0.25s ease-out;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+  body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+}

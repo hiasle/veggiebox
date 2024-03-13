@@ -1,0 +1,33 @@
+:host {
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+
+  font-size: small;
+
+  &.active {
+    font-size: larger;
+    filter: contrast(10%);
+  }
+
+  &:hover {
+    font-size: larger;
+
+    .button__title {
+      // visibility: visible;
+    }
+  }
+}
+
+.button {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__title {
+    // visibility: hidden;
+    font-size: medium;
+  }
+}

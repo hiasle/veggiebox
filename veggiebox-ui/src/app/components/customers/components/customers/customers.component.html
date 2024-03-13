@@ -1,0 +1,21 @@
+<nav class="header">
+  <button
+    type="button"
+    routerLink="list"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="btn btn-primary"
+  >
+    List
+  </button>
+  <button
+    type="button"
+    routerLink="modify"
+    routerLinkActive="active"
+    class="btn btn-primary"
+  >
+    Create
+  </button>
+</nav>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-VeggieboxServerApplication<veggiebox-server>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "org.nolte.veggiebox.veggieboxserver.VeggieboxServerApplication",
+      "projectName": "veggiebox-server",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

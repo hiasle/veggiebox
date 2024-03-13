@@ -1,0 +1,30 @@
+<div class="d-flex flex-column align-items-center pt-4">
+  <app-sidebar-button
+    routerLink="/home"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    [icon]="faHouse"
+    title="Home"
+  ></app-sidebar-button>
+
+  <app-sidebar-button
+    routerLink="/produkte"
+    routerLinkActive="active"
+    [icon]="faApple"
+    title="Produkte"
+  ></app-sidebar-button>
+
+  <app-sidebar-button
+    routerLink="/einkaeufe"
+    routerLinkActive="active"
+    [icon]="faBasket"
+    title="Einkäufe"
+  ></app-sidebar-button>
+
+  <app-sidebar-button
+    routerLink="/kaeufer"
+    routerLinkActive="active"
+    [icon]="faUsers"
+    title="Käufer"
+  ></app-sidebar-button>
+</div>
