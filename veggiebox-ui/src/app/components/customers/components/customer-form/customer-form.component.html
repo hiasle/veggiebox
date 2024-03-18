@@ -1,1 +1,42 @@
-<p>customer-form works!</p>
+<form class="p-4">
+  <div class="row g-3">
+    <div class="col-md-6">
+      <label for="customer_first" class="form-label">Vorname</label>
+      <input
+        id="customer_first"
+        type="text"
+        class="form-control"
+        placeholder=""
+      />
+    </div>
+
+    <div class="col-md-6">
+      <label for="customer_last" class="form-label">Familienname</label>
+      <input
+        id="customer_last"
+        type="text"
+        class="form-control"
+        placeholder=""
+      />
+    </div>
+  </div>
+
+  <div class="row mt-3 mb-4">
+    <div class="col">
+      <label for="customer_phone" class="form-label">Telefon</label>
+      <input
+        id="customer_phone"
+        type="phone"
+        class="form-control"
+        placeholder=""
+      />
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col d-flex justify-content-end">
+      <button type="button" class="btn btn-secondary">Abbrechen</button>
+      <button type="submit" class="btn btn-primary">Speichern</button>
+    </div>
+  </div>
+</form>

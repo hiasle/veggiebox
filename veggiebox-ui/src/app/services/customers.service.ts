@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { CustomerControllerService } from '../openapi';
+import { Customer, CustomerControllerService } from '../openapi';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,5 +10,9 @@ export class CustomersService {
 
   public getCustomerNames(): Observable<Array<string>> {
     return this.api.getCustomerNames();
+  }
+
+  public getCustomers(): Observable<Array<Customer>> {
+    return this.api.getCustomers();
   }
 }

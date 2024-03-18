@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ClientModel } from '../../../../models/client.model';
 import { CommonModule } from '@angular/common';
+import { CustomersService } from '../../../../services/customers.service';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-customer-list',
@@ -10,6 +12,12 @@ import { CommonModule } from '@angular/common';
   styleUrl: './customer-list.component.scss',
 })
 export class CustomerListComponent {
+  constructor(public customerService: CustomersService) {}
+
+  customers$ = this.customerService
+    .getCustomers()
+    .pipe(tap((customers) => console.log(customers)));
+
   customers: Array<ClientModel> = [
     {
       firstname: 'Max',
