@@ -1,21 +1,26 @@
 <nav class="header">
-  <button
-    type="button"
-    routerLink="list"
-    routerLinkActive="active"
-    [routerLinkActiveOptions]="{ exact: true }"
-    class="btn btn-primary"
-  >
-    List
-  </button>
-  <button
-    type="button"
-    routerLink="create"
-    routerLinkActive="active"
-    class="btn btn-primary"
-  >
-    Create
-  </button>
+  <h4>Kunden</h4>
+  <div class="header__toolbar">
+    <button
+      type="button"
+      routerLink="list"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="btn btn-primary"
+    >
+      List
+    </button>
+    <button
+      type="button"
+      routerLink="create"
+      routerLinkActive="active"
+      class="btn btn-primary"
+    >
+      Create
+    </button>
+  </div>
 </nav>
 
-<router-outlet></router-outlet>
+<div class="p-2">
+  <router-outlet></router-outlet>
+</div>

@@ -76,9 +76,15 @@ body {
   // grid-column: full-start / full-end;
   color: $text-color-white;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.header__toolbar {
+  display: flex;
   flex-direction: row;
   justify-content: right;
-  padding: 1rem;
   gap: 1rem;
 }
 

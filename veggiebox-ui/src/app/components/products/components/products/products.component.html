@@ -1,1 +1,26 @@
-<p>products works!</p>
+<nav class="header">
+  <h4>Produkte</h4>
+  <div class="header__toolbar">
+    <button
+      type="button"
+      routerLink="list"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="btn btn-primary"
+    >
+      List
+    </button>
+    <button
+      type="button"
+      routerLink="detail"
+      routerLinkActive="active"
+      class="btn btn-primary"
+    >
+      Create
+    </button>
+  </div>
+</nav>
+
+<div class="p-2">
+<router-outlet></router-outlet>
+</div>

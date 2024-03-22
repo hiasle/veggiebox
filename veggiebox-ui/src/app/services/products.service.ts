@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
-import { ProductModel } from '../models/product.model';
+import {Injectable} from '@angular/core';
+import {ProductModel} from '../models/product.model';
+import {ProductControllerService} from "@openapi/generated";
 
 @Injectable({
   providedIn: 'root',
@@ -7,8 +8,16 @@ import { ProductModel } from '../models/product.model';
 export class ProductsService {
   private products_: ProductModel[] = [];
 
-  constructor() {
+  constructor(private controller: ProductControllerService) {
     this.products_ = initialize();
+  }
+
+  public getProduct(id: number) {
+    return this.controller.getProduct(id);
+  }
+
+  public getProducts() {
+    return this.controller.getProducts();
   }
 
   public allProducts(): ProductModel[] {

@@ -1,0 +1,31 @@
+<div class="row">
+  <h6 class="col-2">Name</h6>
+  <h6 class="col-2">Einheit</h6>
+  <h6 class="col-2">Preis €</h6>
+  <h6 class="col">Beschreibung</h6>
+  <div class="col"></div>
+</div>
+<div *ngFor="let product of products$ | async" class="row mb-1">
+  <div class="col-2">{{ product.name }}</div>
+  <div class="col-2">{{ product.unit | uppercase }}</div>
+  <div class="col-2">{{ product.price }}</div>
+
+  <div class="col">{{ product.description }}</div>
+
+  <div class="col me-2 d-flex justify-content-end">
+    <div
+      class="btn-toolbar"
+      role="toolbar"
+      aria-label="Toolbar with button groups"
+    >
+      <div class="btn-group me-2" role="group" aria-label="First group">
+        <div class="btn btn-outline-primary" (click)="edit(product)">
+          <fa-icon [icon]="faPencil"></fa-icon>
+        </div>
+        <div class="btn btn-outline-primary">
+          <fa-icon [icon]="faTrash"></fa-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
