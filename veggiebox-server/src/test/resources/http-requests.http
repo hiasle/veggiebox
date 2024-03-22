@@ -1,0 +1,23 @@
+### Get request
+GET http://localhost:8080/customer/names HTTP/1.1
+
+### Get request
+GET http://localhost:8080/customer HTTP/1.1
+
+### Get request
+GET http://localhost:8080/customers/search/findByUuid?uuid=12345 HTTP/1.1
+
+### Get request
+GET http://localhost:8080/customers/search/findByLastname?lastname=Matthias HTTP/1.1
+
+
+### save new customer
+POST http://localhost:8080/customer HTTP/1.1
+content-type: application/json
+
+{
+    "uuid": "12345",
+    "firstname": "Martin",
+    "lastname": "Huber",
+    "phone": "+39 328 135 1499"
+}
