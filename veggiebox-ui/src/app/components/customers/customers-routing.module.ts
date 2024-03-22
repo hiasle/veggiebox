@@ -11,7 +11,11 @@ const routes: Routes = [
     children: [
       { path: 'list', component: CustomerListComponent },
       {
-        path: 'modify', // child route path
+        path: 'create', // child route path
+        component: CustomerFormComponent, // child route component that the router renders
+      },
+      {
+        path: 'detail/:id', // child route path
         component: CustomerFormComponent, // child route component that the router renders
       },
       { path: '', redirectTo: 'list', pathMatch: 'full' },

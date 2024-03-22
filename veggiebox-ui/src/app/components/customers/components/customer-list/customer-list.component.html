@@ -1,16 +1,30 @@
-<h1 class="mb-4">Customers:</h1>
+<h1 class="mb-4">Kunden</h1>
 
-<!-- <div *ngFor="let customer of customers" class="mb-4">
-  <h2>{{ customer.lastname }}</h2>
-  <h3>{{ customer.firstname }}</h3>
-</div> -->
-
-<div class="m-4"></div>
-
-<div *ngFor="let c of customers$ | async">
-  {{ c.firstname }} // {{ c.lastname }}
+<div class="row">
+  <h6 class="col-2">Familienname</h6>
+  <h6 class="col-2">Vorname</h6>
+  <h6 class="col">Telefon</h6>
+  <div class="col"></div>
 </div>
-<!-- <div *ngFor="let customer of customers" class="mb-4">
-  <h2>{{ customer.lastname }}</h2>
-  <h3>{{ customer.firstname }}</h3>
-</div> -->
+<div *ngFor="let c of customers$ | async" class="row mb-1">
+  <div class="col-2">{{ c.lastname }}</div>
+  <div class="col-2">{{ c.firstname }}</div>
+  <div class="col">{{ c.phone }}</div>
+
+  <div class="col me-2 d-flex justify-content-end">
+    <div
+      class="btn-toolbar"
+      role="toolbar"
+      aria-label="Toolbar with button groups"
+    >
+      <div class="btn-group me-2" role="group" aria-label="First group">
+        <div class="btn btn-outline-primary" (click)="edit(c)">
+          <fa-icon [icon]="faPencil"></fa-icon>
+        </div>
+        <div class="btn btn-outline-primary" (click)="delete(c)">
+          <fa-icon [icon]="faTrash"></fa-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

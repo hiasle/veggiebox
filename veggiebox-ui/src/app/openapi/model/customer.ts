@@ -13,7 +13,7 @@
 
 export interface Customer { 
     id?: number;
-    uuid?: string;
+    uuid: string;
     firstname: string;
     lastname: string;
     phone?: string;
