@@ -47,5 +47,6 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.customers$.complete();
   }
 }

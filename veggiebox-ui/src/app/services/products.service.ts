@@ -1,15 +1,13 @@
 import {Injectable} from '@angular/core';
 import {ProductModel} from '../models/product.model';
-import {ProductControllerService} from "@openapi/generated";
+import {ProductControllerService, ProductDto} from "@openapi/generated";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductsService {
-  private products_: ProductModel[] = [];
-
   constructor(private controller: ProductControllerService) {
-    this.products_ = initialize();
   }
 
   public getProduct(id: number) {
@@ -20,24 +18,15 @@ export class ProductsService {
     return this.controller.getProducts();
   }
 
-  public allProducts(): ProductModel[] {
-    return this.products_;
+  public addProduct(product: ProductDto): Observable<ProductDto> {
+    return this.controller.createProduct(product);
   }
-}
 
-export function initialize(): ProductModel[] {
-  return [
-    {
-      name: 'Saft (Liter)',
-      description: 'Saft in Liter',
-      unit: 'liter',
-      price: 1,
-    },
-    {
-      name: 'Äpfel (Kilogramm)',
-      description: 'Äpfel in Kilogramm',
-      unit: 'kilogramm',
-      price: 1,
-    },
-  ];
+  public editProduct(product: ProductDto): Observable<ProductDto> {
+    return this.controller.editProduct(product.id ?? 0, product);
+  }
+
+  public deleteProduct(product: ProductDto): Observable<void> {
+    return this.controller.deleteProduct(product.id ?? 0);
+  }
 }

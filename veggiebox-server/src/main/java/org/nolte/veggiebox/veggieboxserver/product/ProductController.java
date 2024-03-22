@@ -38,4 +38,22 @@ public class ProductController {
                 .map((product -> ResponseEntity.ok(mapper.map(product, ProductDto.class))))
                 .orElse(ResponseEntity.notFound().build());
     }
+
+    @PostMapping
+    public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto) {
+        Product entity = mapper.map(productDto, Product.class);
+        return ResponseEntity.ok(mapper.map(productService.createOrSaveProduct(entity), ProductDto.class));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductDto> editProduct(@PathVariable Long id, @RequestBody ProductDto dto) {
+        Product entity = mapper.map(dto, Product.class);
+        return ResponseEntity.ok(mapper.map(productService.updateProduct(id, entity), ProductDto.class));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
+        this.productService.deleteProduct(id);
+        return ResponseEntity.noContent().build();
+    }
 }
