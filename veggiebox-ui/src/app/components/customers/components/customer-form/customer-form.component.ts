@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnDestroy } from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {Component, OnDestroy} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -7,12 +7,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Customer } from '@openapi/generated';
-import { v4 as uuidv4 } from 'uuid';
-import { CustomersService } from '../../../../services/customers.service';
-import { FormTextInputComponent } from '../form-text-input/form-text-input.component';
+import {CustomerDto} from '@openapi/generated';
+import {v4 as uuidv4} from 'uuid';
+import {CustomersService} from '../../../../services/customers.service';
+import {FormTextInputComponent} from '../form-text-input/form-text-input.component';
 import {ActivatedRoute, Router} from '@angular/router';
-import { Subject, filter, lastValueFrom, switchMap, takeUntil } from 'rxjs';
+import {Subject, filter, lastValueFrom, switchMap, takeUntil} from 'rxjs';
 
 @Component({
   selector: 'app-customer-form',
@@ -24,7 +24,7 @@ import { Subject, filter, lastValueFrom, switchMap, takeUntil } from 'rxjs';
 export class CustomerFormComponent implements OnDestroy {
   private readonly destroy$ = new Subject<void>();
 
-  customer!: Customer;
+  customer!: CustomerDto;
   submitted: boolean = false;
   existing: boolean = false;
 
@@ -68,7 +68,7 @@ export class CustomerFormComponent implements OnDestroy {
     } else {
       await lastValueFrom(
         this.customerService.editCustomer({
-          ...(this.form.value.id != null && { id: this.form.value.id }),
+          ...(this.form.value.id != null && {id: this.form.value.id}),
           uuid: this.form.value.uuid ?? '',
           firstname: this.form.value.firstname ?? '',
           lastname: this.form.value.lastname ?? '',
@@ -97,7 +97,7 @@ export class CustomerFormComponent implements OnDestroy {
 
 export function initializeForm(
   fb: FormBuilder,
-  customer: Customer | undefined
+  customer: CustomerDto | undefined
 ): FormGroup<{
   id: FormControl<number | null>;
   uuid: FormControl<string | null>;

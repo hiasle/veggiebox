@@ -15,7 +15,7 @@ import java.util.List;
 @Transactional(propagation = Propagation.MANDATORY)
 public interface ProductRepository extends ListCrudRepository<Product, Long> {
 
-    public List<Customer> findByUuid(String uuid);
+    public List<Product> findByUuid(String uuid);
 
     @Override
     Product save(Product product);

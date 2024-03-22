@@ -1,5 +1,6 @@
 package org.nolte.veggiebox.veggieboxserver.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,11 +18,13 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = false)
+    @OneToMany(mappedBy = "theOrder", cascade = CascadeType.ALL, orphanRemoval = false)
+    @JsonManagedReference
     List<OrderDetail> details;
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
+    @JsonManagedReference
     Customer customer;
 
     LocalDateTime purchased;

@@ -51,4 +51,8 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
+    public Optional<Product> getProduct(Long id) {
+        return this.productRepository.findById(id);
+    }
+
 }

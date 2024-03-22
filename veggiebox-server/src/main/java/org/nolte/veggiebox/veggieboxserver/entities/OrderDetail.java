@@ -1,5 +1,7 @@
 package org.nolte.veggiebox.veggieboxserver.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +17,8 @@ public class OrderDetail {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id", nullable = false)
-    private Order order;
+    @JsonBackReference
+    private Order theOrder;
 
     String name;
 

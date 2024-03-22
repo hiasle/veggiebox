@@ -9,15 +9,15 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { Order } from './order';
+import { OrderDetail } from './order-detail';
+import { Customer } from './customer';
 
 
-export interface Customer { 
+export interface Order { 
     id?: number;
-    uuid: string;
-    firstname: string;
-    lastname: string;
-    phone?: string;
-    orders?: Array<Order>;
+    details?: Array<OrderDetail>;
+    customer?: Customer;
+    purchased?: string;
+    paid?: number;
 }
 

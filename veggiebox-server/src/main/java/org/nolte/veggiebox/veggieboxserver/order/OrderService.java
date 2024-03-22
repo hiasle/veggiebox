@@ -2,7 +2,6 @@ package org.nolte.veggiebox.veggieboxserver.order;
 
 import org.nolte.veggiebox.veggieboxserver.dto.OrderDto;
 import org.nolte.veggiebox.veggieboxserver.entities.Order;
-import org.nolte.veggiebox.veggieboxserver.mapper.OrderMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,9 +29,7 @@ public class OrderService {
     }
 
     public List<Order> getCustomerOrders(Long customerId) {
-        return this.orderRepository.findAll().stream()
-                .filter(order -> order.getCustomer().getId().equals(customerId))
-                .collect(Collectors.toList());
+        return this.orderRepository.findByCustomer_Id(customerId);
     }
 
     public Order getOrder(Long id) {

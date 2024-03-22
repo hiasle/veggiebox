@@ -1,5 +1,6 @@
 package org.nolte.veggiebox.veggieboxserver.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -45,6 +46,7 @@ public class Customer {
     String phone;
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    @JsonBackReference
     List<Order> orders;
 
 }

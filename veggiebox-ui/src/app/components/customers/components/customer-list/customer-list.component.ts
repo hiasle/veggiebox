@@ -4,7 +4,7 @@ import {CustomersService} from '../../../../services/customers.service';
 import {BehaviorSubject, lastValueFrom} from 'rxjs';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {faPencil, faTrashCan} from '@fortawesome/free-solid-svg-icons';
-import {Customer} from '@openapi/generated';
+import {CustomerDto} from '@openapi/generated';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
@@ -18,7 +18,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   faTrash = faTrashCan;
   faPencil = faPencil;
 
-  customers$ = new BehaviorSubject<Customer[]>([]);
+  customers$ = new BehaviorSubject<CustomerDto[]>([]);
 
   constructor(
     public customerService: CustomersService,
@@ -36,13 +36,13 @@ export class CustomerListComponent implements OnInit, OnDestroy {
     this.customers$.next(customers);
   }
 
-  async delete(customer: Customer): Promise<void> {
+  async delete(customer: CustomerDto): Promise<void> {
     console.log('Deleting customer: ', customer);
     await lastValueFrom(this.customerService.deleteCustomer(customer));
     await this.reloadCustomers();
   }
 
-  edit(customer: Customer): void {
+  edit(customer: CustomerDto): void {
     this.router.navigate([`kaeufer/detail/${customer.id}`]);
   }
 

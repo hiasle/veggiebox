@@ -1,9 +1,9 @@
 package org.nolte.veggiebox.veggieboxserver.order;
 
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.nolte.veggiebox.veggieboxserver.dto.OrderDto;
 import org.nolte.veggiebox.veggieboxserver.entities.Order;
-import org.nolte.veggiebox.veggieboxserver.mapper.OrderMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,32 +19,35 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    private final OrderMapper orderMapper;
+    private final ModelMapper mapper;
 
-    public OrderController(OrderService orderService, OrderMapper orderMapper) {
+    public OrderController(OrderService orderService, ModelMapper modelMapper) {
         this.orderService = orderService;
-        this.orderMapper = orderMapper;
+        this.mapper = modelMapper;
     }
 
     @GetMapping
     public ResponseEntity<List<OrderDto>> getOrders(@RequestParam Optional<Long> customerId) {
-        List<Order> result = customerId.map(orderService::getCustomerOrders).orElseGet(orderService::getOrders);
-        return ResponseEntity.ok(result.stream().map(orderMapper::mapTo).collect(Collectors.toList()));
+        List<Order> entities = customerId.map(orderService::getCustomerOrders).orElseGet(orderService::getOrders);
+        return ResponseEntity.ok(entities.stream().map(entity -> mapper.map(entity, OrderDto.class)).toList());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<OrderDto> getOrder(@PathVariable Long id) {
-        return ResponseEntity.ok(orderMapper.mapTo(this.orderService.getOrder(id)));
+        return ResponseEntity.ok(mapper.map(this.orderService.getOrder(id), OrderDto.class));
     }
 
     @PostMapping
-    public ResponseEntity<OrderDto> addOrder(@RequestBody Order order) {
-        return ResponseEntity.ok(orderMapper.mapTo(this.orderService.createOrSave(order)));
+    public ResponseEntity<OrderDto> addOrder(@RequestBody OrderDto dto) {
+        Order entity = mapper.map(dto, Order.class);
+        OrderDto result = mapper.map(this.orderService.createOrSave(entity), OrderDto.class);
+        return ResponseEntity.ok(result);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<OrderDto> editOrder(@PathVariable Long id, @RequestBody Order entity) {
-        return ResponseEntity.ok(orderMapper.mapTo(orderService.update(id, entity)));
+    public ResponseEntity<OrderDto> editOrder(@PathVariable Long id, @RequestBody OrderDto dto) {
+        Order entity = mapper.map(dto, Order.class);
+        return ResponseEntity.ok(mapper.map(orderService.update(id, entity), OrderDto.class));
     }
 
 

@@ -43,6 +43,9 @@ public class AppRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
         Customer customer = customerService.createOrSaveCustomer(new Customer(UUID.randomUUID().toString(), "Max", "Mustermann"));
         productService.createOrSaveProduct(new Product(UUID.randomUUID().toString(), "Apfel", Unit.kiste, 5.0f));
+        productService.createOrSaveProduct(new Product(UUID.randomUUID().toString(), "Kartoffel", Unit.kilogramm, 5.0f));
+        productService.createOrSaveProduct(new Product(UUID.randomUUID().toString(), "Saft", Unit.flasche, 1f, "Apfelsaft"));
+
 
         OrderDetail appleOrder = new OrderDetail();
         appleOrder.setName("Äpfel");

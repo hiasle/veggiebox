@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @RestResource(exported = false)
 @Repository
 // @Transactional(propagation = Propagation.MANDATORY)
@@ -14,5 +16,7 @@ public interface OrderRepository extends ListCrudRepository<Order, Long> {
 
     @Override
     Order save(Order order);
+
+    List<Order> findByCustomer_Id(Long customerId);
 
 }

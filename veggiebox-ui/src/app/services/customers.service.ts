@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Customer, CustomerControllerService } from '../openapi';
+import {CustomerControllerService, CustomerDto} from '../openapi';
 import {Observable, lastValueFrom, map, of} from 'rxjs';
 
 @Injectable({
@@ -8,27 +8,27 @@ import {Observable, lastValueFrom, map, of} from 'rxjs';
 export class CustomersService {
   constructor(private api: CustomerControllerService) {}
 
-  public getCustomerNames(): Observable<Array<Customer>> {
+  public getCustomerNames(): Observable<Array<CustomerDto>> {
     return this.api.getCustomers();
   }
 
-  public getCustomers(): Observable<Array<Customer>> {
+  public getCustomers(): Observable<Array<CustomerDto>> {
     return this.api.getCustomers();
   }
 
-  public getCustomer(id: number): Observable<Customer> {
+  public getCustomer(id: number): Observable<CustomerDto> {
     return this.api.getCustomer(id);
   }
 
-  public addCustomer(customer: Customer): Observable<Customer> {
+  public addCustomer(customer: CustomerDto): Observable<CustomerDto> {
     return this.api.addCustomer(customer);
   }
 
-  public editCustomer(customer: Customer): Observable<Customer> {
+  public editCustomer(customer: CustomerDto): Observable<CustomerDto> {
     return this.api.editCustomer(customer.id ?? 0, customer);
   }
 
-  public deleteCustomer(customer: Customer): Observable<void> {
+  public deleteCustomer(customer: CustomerDto): Observable<void> {
     return this.api.deleteCustomer(customer.id ?? 0);
   }
 }

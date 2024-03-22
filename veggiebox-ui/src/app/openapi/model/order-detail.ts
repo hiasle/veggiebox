@@ -12,12 +12,11 @@
 import { Order } from './order';
 
 
-export interface Customer { 
+export interface OrderDetail { 
     id?: number;
-    uuid: string;
-    firstname: string;
-    lastname: string;
-    phone?: string;
-    orders?: Array<Order>;
+    theOrder?: Order;
+    name?: string;
+    quantity?: number;
+    price?: number;
 }
 

@@ -3,11 +3,16 @@ README.md
 api.module.ts
 api/api.ts
 api/customer-controller.service.ts
+api/order-controller.service.ts
+api/product-controller.service.ts
 configuration.ts
 encoder.ts
 git_push.sh
 index.ts
-model/customer.ts
+model/customer-dto.ts
 model/models.ts
+model/order-detail-dto.ts
+model/order-dto.ts
+model/product-dto.ts
 param.ts
 variables.ts
