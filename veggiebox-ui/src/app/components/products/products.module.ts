@@ -6,7 +6,7 @@ import { ProductFormComponent } from './components/product-form/product-form.com
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormTextInputComponent } from '../shared/forms/form-text-input/form-text-input.component';
+import { FormsSharedModule } from '@shared/forms';
 
 @NgModule({
   imports: [
@@ -14,7 +14,7 @@ import { FormTextInputComponent } from '../shared/forms/form-text-input/form-tex
     ProductsRoutingModule,
     FaIconComponent,
     ReactiveFormsModule,
-    FormTextInputComponent,
+    FormsSharedModule,
   ],
   declarations: [ProductsComponent, ProductFormComponent, ProductListComponent],
 })

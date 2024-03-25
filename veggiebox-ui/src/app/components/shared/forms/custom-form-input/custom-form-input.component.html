@@ -1,0 +1,32 @@
+<ng-container *ngIf="inputType === 'textarea'; else normalInput">
+  <label for="form_text_area" class="form-label">{{ labelText }}</label>
+  <textarea
+    id="form_text_area"
+    class="form-control"
+    rows="3"
+    [formControl]="formControl"
+  ></textarea>
+</ng-container>
+
+<ng-template #normalInput>
+  <label for="form_input" class="form-label">{{ labelText }}</label>
+  <input
+    id="form_input"
+    [type]="inputType"
+    class="form-control"
+    placeholder=""
+    [formControl]="formControl"
+    [class.is-invalid]="
+      (showValidationErrorsInstant || formControl.touched) &&
+      formControl.invalid
+    "
+    [class.is-valid]="showValidationErrorsInstant && formControl.valid"
+  />
+</ng-template>
+
+<div
+  *ngIf="formControl.touched && formControl.invalid"
+  [class.invalid-feedback]="formControl.invalid"
+>
+  {{ formControl.errors | json }}
+</div>

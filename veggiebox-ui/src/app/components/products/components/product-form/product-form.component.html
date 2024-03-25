@@ -1,11 +1,11 @@
 <form [formGroup]="form" (ngSubmit)="save()">
   <div class="row g-3">
     <div class="col-md-6">
-      <app-form-text-input
+      <custom-form-input
         formControlName="name"
         labelText="Name"
         [showValidationErrorsInstant]="submitted"
-      ></app-form-text-input>
+      ></custom-form-input>
     </div>
 
     <div class="col-md-3">
@@ -19,24 +19,23 @@
     </div>
 
     <div class="col-md-3">
-      <app-form-text-input
+      <custom-form-input
         formControlName="price"
         labelText="Preis in €"
         inputType="number"
         [showValidationErrorsInstant]="submitted"
-      ></app-form-text-input>
+      ></custom-form-input>
     </div>
   </div>
 
   <div class="row">
     <div class="col">
-      <label for="product_desc" class="form-label">Beschreibung</label>
-      <textarea
-        id="product_desc"
-        class="form-control"
-        rows="3"
+      <custom-form-input
         formControlName="description"
-      ></textarea>
+        labelText="Beschreibung"
+        inputType="textarea"
+        [showValidationErrorsInstant]="submitted"
+      ></custom-form-input>
     </div>
   </div>
 

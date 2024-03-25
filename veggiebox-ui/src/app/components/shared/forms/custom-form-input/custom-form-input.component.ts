@@ -12,23 +12,23 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
-export type InputType = 'text' | 'number';
+export type InputType = 'text' | 'number' | 'textarea';
 
 @Component({
-  selector: 'app-form-text-input',
-  templateUrl: './form-text-input.component.html',
-  styleUrl: './form-text-input.component.scss',
+  selector: 'custom-form-input',
+  templateUrl: './custom-form-input.component.html',
+  styleUrl: './custom-form-input.component.scss',
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => FormTextInputComponent),
+      useExisting: forwardRef(() => CustomFormInputComponent),
       multi: true,
     },
   ],
 })
-export class FormTextInputComponent implements OnInit, ControlValueAccessor {
+export class CustomFormInputComponent implements OnInit, ControlValueAccessor {
   @Input()
   showValidationErrorsInstant = false;
 

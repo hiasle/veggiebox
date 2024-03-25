@@ -3,7 +3,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
-    "paths": {"@openapi/generated": ["./src/app/openapi"]},
+    "paths": {"@openapi/generated": ["./src/app/openapi"], "@shared/forms":  ["./src/app/components/shared/forms"]},
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,

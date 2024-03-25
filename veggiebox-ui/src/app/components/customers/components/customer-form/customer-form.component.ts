@@ -10,14 +10,14 @@ import {
 import { CustomerDto } from '@openapi/generated';
 import { v4 as uuidv4 } from 'uuid';
 import { CustomersService } from '../../../../services/customers.service';
-import { FormTextInputComponent } from '../../../shared/forms/form-text-input/form-text-input.component';
 import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
+import { FormsSharedModule } from '@shared/forms';
 
 @Component({
   selector: 'app-customer-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormTextInputComponent],
+  imports: [CommonModule, ReactiveFormsModule, FormsSharedModule],
   templateUrl: './customer-form.component.html',
   styleUrl: './customer-form.component.scss',
 })

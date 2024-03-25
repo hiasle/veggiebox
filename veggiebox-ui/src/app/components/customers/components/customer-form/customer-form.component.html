@@ -1,29 +1,29 @@
 <form class="p-4 needs-validation" [formGroup]="form" (ngSubmit)="save()">
   <div class="row g-3">
     <div class="col-md-6">
-      <app-form-text-input
+      <custom-form-input
         formControlName="firstname"
         labelText="Vorname"
         [showValidationErrorsInstant]="submitted"
-      ></app-form-text-input>
+      ></custom-form-input>
     </div>
 
     <div class="col-md-6">
-      <app-form-text-input
+      <custom-form-input
         formControlName="lastname"
         labelText="Familienname"
         [showValidationErrorsInstant]="submitted"
-      ></app-form-text-input>
+      ></custom-form-input>
     </div>
   </div>
 
   <div class="row mt-3 mb-4">
     <div class="col">
-      <app-form-text-input
+      <custom-form-input
         formControlName="phone"
         labelText="Telefon"
         [showValidationErrorsInstant]="submitted"
-      ></app-form-text-input>
+      ></custom-form-input>
     </div>
   </div>
 
