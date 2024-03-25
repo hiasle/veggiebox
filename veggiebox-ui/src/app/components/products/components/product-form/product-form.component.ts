@@ -43,7 +43,7 @@ export class ProductFormComponent {
         ...this.form.value
       }));
     }
-    this.reset()
+    this.reset();
     this.router.navigate(['produkte']);
   }
 

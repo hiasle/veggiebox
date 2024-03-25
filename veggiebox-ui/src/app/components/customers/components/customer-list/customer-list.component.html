@@ -1,15 +1,15 @@
 <div class="row">
-  <h6 class="col-2">Familienname</h6>
-  <h6 class="col-2">Vorname</h6>
-  <h6 class="col">Telefon</h6>
-  <div class="col"></div>
+  <h6 class="col-md-2">Familienname</h6>
+  <h6 class="col-md-2">Vorname</h6>
+  <h6 class="col-md">Telefon</h6>
+  <div class="col-md"></div>
 </div>
 <div *ngFor="let customer of customers$ | async" class="row mb-1">
-  <div class="col-2">{{ customer.lastname }}</div>
-  <div class="col-2">{{ customer.firstname }}</div>
-  <div class="col">{{ customer.phone }}</div>
+  <div class="col-md-2">{{ customer.lastname }}</div>
+  <div class="col-md-2">{{ customer.firstname }}</div>
+  <div class="col-md">{{ customer.phone }}</div>
 
-  <div class="col me-2 d-flex justify-content-end">
+  <div class="col-md me-2 d-flex justify-content-end">
     <div
       class="btn-toolbar"
       role="toolbar"

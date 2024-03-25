@@ -5,7 +5,7 @@ import {BehaviorSubject, lastValueFrom} from 'rxjs';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {faPencil, faTrashCan} from '@fortawesome/free-solid-svg-icons';
 import {CustomerDto} from '@openapi/generated';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-customer-list',
@@ -22,7 +22,6 @@ export class CustomerListComponent implements OnInit, OnDestroy {
 
   constructor(
     public customerService: CustomersService,
-    private route: ActivatedRoute,
     private router: Router
   ) {
   }
@@ -43,7 +42,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   }
 
   edit(customer: CustomerDto): void {
-    this.router.navigate([`kaeufer/detail/${customer.id}`]);
+    this.router.navigate(['kaeufer/detail/', customer.id]);
   }
 
   ngOnDestroy(): void {

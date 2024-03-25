@@ -1,5 +1,4 @@
 <form class="p-4 needs-validation" [formGroup]="form" (ngSubmit)="save()">
-  <!-- <app-form-text-input formControlName="firstname"></app-form-text-input> -->
   <div class="row g-3">
     <div class="col-md-6">
       <label for="customer_first" class="form-label">Vorname</label>
@@ -7,24 +6,26 @@
         id="customer_first"
         type="text"
         class="form-control"
-        [class.is-invalid]="
-          (submitted || form.controls.firstname.touched) &&
-          form.controls.firstname.invalid
-        "
-        [class.is-valid]="submitted && form.controls.firstname.valid"
-        placeholder=""
         formControlName="firstname"
       />
+      <!--        [class.is-invalid]="-->
+      <!--          (submitted || form.controls.firstname.touched) &&-->
+      <!--          form.controls.firstname.invalid-->
+      <!--        "-->
+      <!--        [class.is-valid]="submitted && form.controls.firstname.valid"-->
+      <!--        placeholder=""-->
+
+      <!--      />-->
       <!-- <div [class.valid-feedback]="form.controls.firstname.valid">
         Looks good!
       </div> -->
 
-      <div
-        class="valid-feedback"
-        [class.invalid-feedback]="form.controls.firstname.invalid"
-      >
-        Looks good!
-      </div>
+      <!--      <div-->
+      <!--        class="valid-feedback"-->
+      <!--        [class.invalid-feedback]="form.controls.firstname.invalid"-->
+      <!--      >-->
+      <!--        Looks good!-->
+      <!--      </div>-->
     </div>
 
     <div class="col-md-6">

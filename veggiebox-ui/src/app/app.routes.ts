@@ -12,7 +12,7 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'einkaeufe',
+    path: 'verkaeufe',
     loadChildren: () =>
       import('./components/orders/orders.module').then((m) => m.OrdersModule),
   },
