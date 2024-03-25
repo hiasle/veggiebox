@@ -1,12 +1,18 @@
-import {CommonModule} from '@angular/common';
-import {Component, Input} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators,} from '@angular/forms';
-import {CustomerDto} from '@openapi/generated';
-import {v4 as uuidv4} from 'uuid';
-import {CustomersService} from '../../../../services/customers.service';
-import {FormTextInputComponent} from '../form-text-input/form-text-input.component';
-import {Router} from '@angular/router';
-import {lastValueFrom} from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { CustomerDto } from '@openapi/generated';
+import { v4 as uuidv4 } from 'uuid';
+import { CustomersService } from '../../../../services/customers.service';
+import { FormTextInputComponent } from '../../../shared/forms/form-text-input/form-text-input.component';
+import { Router } from '@angular/router';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-customer-form',
@@ -16,7 +22,6 @@ import {lastValueFrom} from 'rxjs';
   styleUrl: './customer-form.component.scss',
 })
 export class CustomerFormComponent {
-
   form!: FormGroup;
 
   @Input()
@@ -33,8 +38,7 @@ export class CustomerFormComponent {
     private fb: FormBuilder,
     private customerService: CustomersService,
     private router: Router,
-  ) {
-  }
+  ) {}
 
   public async save(): Promise<void> {
     if (!this.form.valid) {
@@ -43,9 +47,12 @@ export class CustomerFormComponent {
     }
 
     if (this.create) {
-      await lastValueFrom(this.customerService.addCustomer({...this.form.value}));
+      await lastValueFrom(
+        this.customerService.addCustomer({ ...this.form.value }),
+      );
     } else {
-      await lastValueFrom(this.customerService.editCustomer({...this.form.value})
+      await lastValueFrom(
+        this.customerService.editCustomer({ ...this.form.value }),
       );
     }
     this.reset();
@@ -63,14 +70,17 @@ export class CustomerFormComponent {
 
   private initializeForm(customer: CustomerDto) {
     this.form = this.fb.group({
-      id: customer?.id ?? null,
-      uuid: uuidv4(),
-      firstname: [customer?.firstname ?? null, Validators.required],
-      lastname: [customer?.lastname ?? null, Validators.required],
-      phone: customer?.phone ?? null,
+      id: new FormControl(customer?.id ?? null),
+      uuid: new FormControl(uuidv4()),
+      firstname: new FormControl(customer?.firstname ?? null, [
+        Validators.required,
+      ]),
+      lastname: new FormControl(customer?.lastname ?? null, [
+        Validators.required,
+      ]),
+      phone: new FormControl(customer?.phone ?? null),
     });
     console.log('Form initialized with value: ', this.form.value);
     console.log('Form initialized with create: ', this.create);
   }
 }
-
