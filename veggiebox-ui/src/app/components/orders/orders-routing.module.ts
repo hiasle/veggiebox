@@ -7,7 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: OrdersComponent,
-    children: [{ path: 'list', component: OrdersListComponent }],
+    children: [
+      { path: 'list', component: OrdersListComponent },
+      { path: '', redirectTo: 'list', pathMatch: 'full' },
+    ],
   },
 ];
 

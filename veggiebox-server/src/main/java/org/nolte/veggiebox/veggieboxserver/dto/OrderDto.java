@@ -22,13 +22,13 @@ public class OrderDto {
 
     float paid;
 
-    public float sumPriceOrder() {
-        return this.details.stream().map(detail -> detail.getPrice()).reduce(0f, Float::sum);
+    public float getSum() {
+        return this.details.stream().map(OrderDetailDto::getPrice).reduce(0f, Float::sum);
     }
 
     public float getDifference() {
         log.info("Get difference called");
-        return this.sumPriceOrder() - this.paid;
+        return this.getSum() - this.paid;
     }
 
 }
