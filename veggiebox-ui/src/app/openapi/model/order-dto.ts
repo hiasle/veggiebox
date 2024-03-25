@@ -19,6 +19,7 @@ export interface OrderDto {
     customer?: CustomerDto;
     purchased?: string;
     paid?: number;
+    sum?: number;
     difference?: number;
 }
 

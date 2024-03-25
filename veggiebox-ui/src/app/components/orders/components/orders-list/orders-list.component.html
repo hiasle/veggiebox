@@ -1,2 +1,17 @@
-<p>orders-list works!</p>
-<div>{{ orders$ | async | json }}</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Kunde</th>
+      <th scope="col">Betrag</th>
+      <th scope="col">Kaufdatum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders$ | async">
+      <th scope="col">{{ order.id }}</th>
+      <td>{{ order.customer?.firstname }} {{ order.customer?.lastname }}</td>
+      <td>{{ order.sum }}</td>
+    </tr>
+  </tbody>
+</table>
