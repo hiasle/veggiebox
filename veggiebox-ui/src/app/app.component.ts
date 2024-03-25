@@ -1,8 +1,7 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from './components/navigation/sidebar/sidebar.component';
 import { ApiModule, BASE_PATH } from './openapi';
-import { CustomersService } from './services/customers.service';
 
 @Component({
   selector: 'app-root',
@@ -12,14 +11,6 @@ import { CustomersService } from './services/customers.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'veggiebox-ui';
-
-  customersService = inject(CustomersService);
-
-  ngOnInit(): void {
-    this.customersService
-      .getCustomerNames()
-      .subscribe((names) => console.log(names));
-  }
 }

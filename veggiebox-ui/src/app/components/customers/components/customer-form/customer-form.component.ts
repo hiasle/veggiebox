@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { CustomerDto } from '@openapi/generated';
 import { v4 as uuidv4 } from 'uuid';
-import { CustomersService } from '../../../../services/customers.service';
+import { CustomersService } from '../../services/customers.service';
 import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { FormsSharedModule } from '@shared/forms';

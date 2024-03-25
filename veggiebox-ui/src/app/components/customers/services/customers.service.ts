@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import {CustomerControllerService, CustomerDto} from '../openapi';
-import {Observable, lastValueFrom, map, of} from 'rxjs';
+import { CustomerControllerService, CustomerDto } from '@openapi/generated';
+import { Observable, lastValueFrom, map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

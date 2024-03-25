@@ -1,25 +1,31 @@
-import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
-import {faPencil, faTrashCan} from "@fortawesome/free-solid-svg-icons";
-import {ProductsService} from "../../../../services/products.service";
-import {ProductDto} from "@openapi/generated";
-import {Router} from "@angular/router";
-import {BehaviorSubject, lastValueFrom} from "rxjs";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
+import { faPencil, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { ProductsService } from '../../services/products.service';
+import { ProductDto } from '@openapi/generated';
+import { Router } from '@angular/router';
+import { BehaviorSubject, lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductListComponent implements OnInit, OnDestroy {
-
   faTrash = faTrashCan;
   faPencil = faPencil;
 
   products$ = new BehaviorSubject<ProductDto[]>([]);
 
-  constructor(private productService: ProductsService, private router: Router) {
-  }
+  constructor(
+    private productService: ProductsService,
+    private router: Router,
+  ) {}
 
   async ngOnInit(): Promise<void> {
     await this.reloadProducts();
@@ -42,5 +48,4 @@ export class ProductListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.products$.complete();
   }
-
 }

@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ProductDto } from '@openapi/generated';
-import { ProductsService } from '../../../../services/products.service';
+import { ProductsService } from '../../services/products.service';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import UnitEnum = ProductDto.UnitEnum;

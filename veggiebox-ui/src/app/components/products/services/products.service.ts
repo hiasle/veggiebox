@@ -1,14 +1,13 @@
-import {Injectable} from '@angular/core';
-import {ProductModel} from '../models/product.model';
-import {ProductControllerService, ProductDto} from "@openapi/generated";
-import {Observable} from "rxjs";
+import { Injectable } from '@angular/core';
+import { ProductModel } from '../../../models/product.model';
+import { ProductControllerService, ProductDto } from '@openapi/generated';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductsService {
-  constructor(private controller: ProductControllerService) {
-  }
+  constructor(private controller: ProductControllerService) {}
 
   public getProduct(id: number) {
     return this.controller.getProduct(id);

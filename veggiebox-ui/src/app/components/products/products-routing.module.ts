@@ -1,10 +1,16 @@
-import {inject, NgModule} from '@angular/core';
-import {Routes, RouterModule, provideRouter, withComponentInputBinding, ActivatedRouteSnapshot} from '@angular/router';
-import {ProductsComponent} from './components/products/products.component';
-import {ProductFormComponent} from "./components/product-form/product-form.component";
-import {of} from "rxjs";
-import {ProductsService} from "../../services/products.service";
-import {ProductListComponent} from "./components/product-list/product-list.component";
+import { inject, NgModule } from '@angular/core';
+import {
+  Routes,
+  RouterModule,
+  provideRouter,
+  withComponentInputBinding,
+  ActivatedRouteSnapshot,
+} from '@angular/router';
+import { ProductsComponent } from './components/products/products.component';
+import { ProductFormComponent } from './components/product-form/product-form.component';
+import { of } from 'rxjs';
+import { ProductsService } from './services/products.service';
+import { ProductListComponent } from './components/product-list/product-list.component';
 
 // resolve product route
 export const productResolver = (route: ActivatedRouteSnapshot) => {
@@ -14,7 +20,7 @@ export const productResolver = (route: ActivatedRouteSnapshot) => {
   } else {
     return inject(ProductsService).getProduct(+productId);
   }
-}
+};
 
 const routes: Routes = [
   {
@@ -30,14 +36,14 @@ const routes: Routes = [
         component: ProductFormComponent,
         resolve: {
           product: productResolver,
-        }
+        },
       },
       {
         path: 'detail',
         component: ProductFormComponent,
       },
       { path: '', redirectTo: 'list', pathMatch: 'full' },
-    ]
+    ],
   },
 ];
 
@@ -45,5 +51,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ProductsRoutingModule {
-}
+export class ProductsRoutingModule {}

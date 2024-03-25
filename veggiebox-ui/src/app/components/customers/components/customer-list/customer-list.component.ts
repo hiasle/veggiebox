@@ -1,11 +1,11 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {CustomersService} from '../../../../services/customers.service';
-import {BehaviorSubject, lastValueFrom} from 'rxjs';
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {faPencil, faTrashCan} from '@fortawesome/free-solid-svg-icons';
-import {CustomerDto} from '@openapi/generated';
-import {Router} from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { CustomersService } from '../../services/customers.service';
+import { BehaviorSubject, lastValueFrom } from 'rxjs';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faPencil, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { CustomerDto } from '@openapi/generated';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer-list',
@@ -22,9 +22,8 @@ export class CustomerListComponent implements OnInit, OnDestroy {
 
   constructor(
     public customerService: CustomersService,
-    private router: Router
-  ) {
-  }
+    private router: Router,
+  ) {}
 
   async ngOnInit(): Promise<void> {
     await this.reloadCustomers();
