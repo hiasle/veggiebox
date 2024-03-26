@@ -1,5 +1,7 @@
 <ng-container *ngIf="inputType === 'textarea'; else normalInput">
-  <label for="form_text_area" class="form-label">{{ labelText }}</label>
+  <label for="form_text_area" class="form-label" *ngIf="withLabel">{{
+    labelText
+  }}</label>
   <textarea
     id="form_text_area"
     class="form-control"
@@ -9,7 +11,9 @@
 </ng-container>
 
 <ng-template #normalInput>
-  <label for="form_input" class="form-label">{{ labelText }}</label>
+  <label for="form_input" class="form-label" *ngIf="withLabel">{{
+    labelText
+  }}</label>
   <input
     id="form_input"
     [type]="inputType"

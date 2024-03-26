@@ -38,6 +38,9 @@ export class CustomFormInputComponent implements OnInit, ControlValueAccessor {
   @Input()
   inputType: InputType = 'text';
 
+  @Input()
+  withLabel: boolean = true;
+
   formControl!: FormControl;
 
   constructor(private injector: Injector) {}

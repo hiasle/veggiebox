@@ -1,0 +1,83 @@
+<form [formGroup]="form" (ngSubmit)="saveOrder()">
+  <div class="row g-3 d-flex align-items-center mb-4">
+    <div class="col">
+      <!--      <label id="customer-select">Kunde</label>-->
+      <!--         labelForId="customer-select" -->
+      <ng-select
+        [items]="customers$ | async"
+        bindLabel="label"
+        dropdownPosition="auto"
+        bindValue="id"
+        placeholder="Kunden auswählen..."
+        formControlName="customerId"
+      >
+        <ng-template ng-option-tmp let-item="item">
+          <div>
+            <span>{{ fullname(item) }}</span>
+          </div>
+          <small *ngIf="item.phone != null"><b>tel:</b>{{ item.phone }}</small>
+        </ng-template>
+      </ng-select>
+    </div>
+    <div class="col d-flex justify-content-end">
+      <button
+        type="button"
+        class="btn btn-outline-primary btn-sm me-4"
+        (click)="addProduct()"
+      >
+        + Produkt hinzufügen
+      </button>
+      <button type="button" class="btn btn-outline-primary btn-sm me-2">
+        Abbrechen
+      </button>
+      <button type="submit" class="btn btn-primary btn-sm">Speichern</button>
+    </div>
+  </div>
+
+  <ng-container formArrayName="products">
+    <ng-container *ngFor="let product of products.controls; let i = index">
+      <div [formGroup]="product" class="row ps-4 mb-2">
+        <div class="col align-top">
+          <ng-select
+            [items]="products$ | async"
+            bindLabel="label"
+            dropdownPosition="auto"
+            bindValue="id"
+            placeholder="Produkt auswählen..."
+            formControlName="productId"
+          >
+            <ng-template ng-option-tmp let-item="item">
+              <div>
+                <span>{{ item.label }}</span>
+              </div>
+            </ng-template>
+          </ng-select>
+        </div>
+
+        <custom-form-input
+          inputType="number"
+          formControlName="productAmount"
+          labelText="Menge"
+          class="col-md-2 align-top"
+          [withLabel]="false"
+          [showValidationErrorsInstant]="submitted"
+        ></custom-form-input>
+
+        <div class="col-md-2 align-top d-flex justify-content-end">
+          <button
+            type="button"
+            class="btn btn-primary btn-sm"
+            (click)="deleteProduct(i)"
+          >
+            Löschen
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <div class="row">
+    <div class="col"></div>
+    <div class="col d-flex justify-content-end"></div>
+  </div>
+</form>

@@ -1,13 +1,13 @@
 package org.nolte.veggiebox.veggieboxserver.order;
 
-import org.nolte.veggiebox.veggieboxserver.dto.OrderDto;
+import org.nolte.veggiebox.veggieboxserver.customer.CustomerRepository;
 import org.nolte.veggiebox.veggieboxserver.entities.Order;
+import org.nolte.veggiebox.veggieboxserver.product.ProductRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
@@ -15,12 +15,21 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
 
-    public OrderService(OrderRepository orderRepository) {
+    private final ProductRepository productRepository;
+
+    private final CustomerRepository customerRepository;
+
+    public OrderService(OrderRepository orderRepository,
+                        ProductRepository productRepository,
+                        CustomerRepository customerRepository) {
         this.orderRepository = orderRepository;
+        this.productRepository = productRepository;
+        this.customerRepository = customerRepository;
     }
 
     @Transactional
     public Order createOrSave(Order order) {
+        order.setPurchased(LocalDateTime.now());
         return this.orderRepository.save(order);
     }
 

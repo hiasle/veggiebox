@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { OrderControllerService } from '@openapi/generated';
+import { OrderControllerService, OrderDto } from '@openapi/generated';
+import { lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,5 +10,9 @@ export class OrdersService {
 
   public getOrders() {
     return this.controller.getOrders();
+  }
+
+  public async addOrder(order: OrderDto) {
+    return await lastValueFrom(this.controller.addOrder(order));
   }
 }

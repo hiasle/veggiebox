@@ -5,13 +5,19 @@
       <th scope="col">Kunde</th>
       <th scope="col">Betrag</th>
       <th scope="col">Kaufdatum</th>
+      <th scope="col">Toggled</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let order of orders$ | async">
-      <th scope="col">{{ order.id }}</th>
-      <td>{{ order.customer?.firstname }} {{ order.customer?.lastname }}</td>
-      <td>{{ order.sum }}</td>
-    </tr>
+    <ng-container *ngFor="let order of orders$ | async">
+      <tr (click)="order.toggled = !order.toggled" class="cursor-pointer">
+        <th scope="col">{{ order.id }}</th>
+        <td>{{ order.customer?.firstname }} {{ order.customer?.lastname }}</td>
+        <td>{{ order.sum | currency }}</td>
+        <td>{{ order.purchased | date }}</td>
+        <td>{{ order.toggled }}</td>
+      </tr>
+      <div *ngIf="order.toggled">Details</div>
+    </ng-container>
   </tbody>
 </table>

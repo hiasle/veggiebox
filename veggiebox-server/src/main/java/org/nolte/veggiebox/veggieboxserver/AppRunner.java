@@ -63,9 +63,21 @@ public class AppRunner implements CommandLineRunner {
         order.setPurchased(LocalDateTime.now());
         order.setPaid(24f);
 
+        OrderDetail potatoesOrder2 = new OrderDetail();
+        potatoesOrder2.setName("Kartoffel");
+        potatoesOrder2.setPrice(14f);
+        potatoesOrder2.setQuantity(6);
+
+        Order order2 = new Order();
+        order2.setCustomer(customer);
+        order2.setDetails(Arrays.asList(potatoesOrder2));
+        order2.setPurchased(LocalDateTime.now());
+        order2.setPaid(14f);
+
 //        orderDetail.setOrder(order);
 
         this.orderService.createOrSave(order);
+        this.orderService.createOrSave(order2);
 
 
         List<Customer> customers = customerService.getCustomers();

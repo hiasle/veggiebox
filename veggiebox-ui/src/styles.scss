@@ -1,6 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/@ng-select/ng-select/themes/default.theme.css";
+
+ng-select.ng-invalid.ng-touched .ng-select-container {
+  border-color: var(--bs-form-invalid-border-color);
+}
 
 $theme-colors: (
   // primary: $gray-600,
