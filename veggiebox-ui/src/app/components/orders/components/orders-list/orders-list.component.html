@@ -14,7 +14,7 @@
         <td>{{ order.customer?.firstname }} {{ order.customer?.lastname }}</td>
         <td>
           <ng-container *ngIf="!order.toggled; else show_detail">
-            <td>{{ order.sum | currency: "EUR" }}</td>
+            <td>{{ order.sum | currency }}</td>
           </ng-container>
           <ng-template #show_detail>
             <ng-container
@@ -22,7 +22,7 @@
             ></ng-container>
           </ng-template>
         </td>
-        <td>{{ order.purchased | date: "dd.MM.yyyy" }}</td>
+        <td>{{ order.purchased | date }}</td>
       </tr>
     </ng-container>
   </tbody>
@@ -32,11 +32,11 @@
   <table>
     <tr *ngFor="let detail of details">
       <td class="pe-4">{{ detail.name }}</td>
-      <td class="text-end">{{ detail.price | currency: "EUR" }}</td>
+      <td class="text-end">{{ detail.price | currency }}</td>
     </tr>
     <tr>
       <th>Summe:</th>
-      <th>{{ sum | currency: "EUR" }}</th>
+      <th>{{ sum | currency }}</th>
     </tr>
   </table>
 </ng-template>

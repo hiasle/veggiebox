@@ -77,7 +77,7 @@
             class="badge rounded-pill bg-secondary-subtle d-flex align-items-center"
           >
             <div class="text-dark fs-6 font-monospace">
-              {{ priceProduct(i) | currency: "EUR" }}
+              {{ priceProduct(i) | currency }}
             </div>
           </div>
 
@@ -100,7 +100,7 @@
         *ngIf="sum$ | async as summe"
         class="badge rounded-pill bg-success text-dark fs-6 font-monospace"
       >
-        {{ summe | currency: "EUR" }}
+        {{ summe | currency }}
       </div>
     </div>
   </div>
