@@ -39,6 +39,9 @@ public class OrderController {
     @PostMapping
     public ResponseEntity<OrderDto> addOrder(@RequestBody OrderDto dto) {
         Order entity = mapper.map(dto, Order.class);
+        entity.getDetails().forEach(detail -> {
+            detail.setOrder(entity);
+        });
         OrderDto result = mapper.map(this.orderService.createOrSave(entity), OrderDto.class);
         return ResponseEntity.ok(result);
     }
@@ -46,6 +49,9 @@ public class OrderController {
     @PutMapping("/{id}")
     public ResponseEntity<OrderDto> editOrder(@PathVariable Long id, @RequestBody OrderDto dto) {
         Order entity = mapper.map(dto, Order.class);
+        entity.getDetails().forEach(detail -> {
+            detail.setOrder(entity);
+        });
         return ResponseEntity.ok(mapper.map(orderService.update(id, entity), OrderDto.class));
     }
 

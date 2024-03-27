@@ -59,7 +59,8 @@ public class AppRunner implements CommandLineRunner {
 
         Order order = new Order();
         order.setCustomer(customer);
-        order.setDetails(Arrays.asList(appleOrder, potatoesOrder));
+        order.addOrderDetail(appleOrder);
+        order.addOrderDetail(potatoesOrder);
         order.setPurchased(LocalDateTime.now());
         order.setPaid(24f);
 
@@ -70,7 +71,7 @@ public class AppRunner implements CommandLineRunner {
 
         Order order2 = new Order();
         order2.setCustomer(customer);
-        order2.setDetails(Arrays.asList(potatoesOrder2));
+        order2.addOrderDetail(potatoesOrder2);
         order2.setPurchased(LocalDateTime.now());
         order2.setPaid(14f);
 

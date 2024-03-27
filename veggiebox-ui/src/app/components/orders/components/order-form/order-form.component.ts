@@ -72,8 +72,9 @@ export class OrderFormComponent {
       },
       details: this.products.value.map((p) => {
         return {
-          id: p.product.id,
+          name: p.product.name,
           quantity: p.productAmount,
+          price: this.calcPrice(p?.product?.price, p?.productAmount),
         };
       }),
     };
@@ -104,9 +105,7 @@ export class OrderFormComponent {
 
   priceProduct(index: number) {
     const prod = this.products.at(index).value;
-    const price = this.calcPrice(prod?.product?.price, prod?.productAmount);
-    console.log('Product price: ', price);
-    return price;
+    return this.calcPrice(prod?.product?.price, prod?.productAmount);
   }
 
   private calcPrice(productPrice: number | null, prodcutAmount: number | null) {

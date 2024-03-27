@@ -16,14 +16,24 @@ public class OrderDetail {
     Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id", nullable = false)
-    @JsonBackReference
-    private Order theOrder;
+    private Order order;
 
     String name;
 
     int quantity;
 
     float price;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof OrderDetail )) return false;
+        return id != null && id.equals(((OrderDetail) o).getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 
 }
