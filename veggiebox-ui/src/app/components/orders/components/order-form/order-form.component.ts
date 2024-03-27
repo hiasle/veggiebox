@@ -11,6 +11,7 @@ import {
 } from '@angular/forms';
 import { ProductsService } from '../../../products/services/products.service';
 import { OrdersService } from '../../services/orders.service';
+import { Router } from '@angular/router';
 
 export type SelectItem = { label: string };
 export type CustomerSelectItem = CustomerDto & SelectItem;
@@ -35,6 +36,7 @@ export class OrderFormComponent {
     private productService: ProductsService,
     public orderService: OrdersService,
     private fb: FormBuilder,
+    private router: Router,
   ) {
     this.customers$ = customerService.getCustomers().pipe(
       map((customers) => {
@@ -78,8 +80,8 @@ export class OrderFormComponent {
         };
       }),
     };
-    console.log('Form will be submitted with value: ', order);
     await this.orderService.addOrder(order);
+    this.router.navigate(['verkaeufe']);
   }
 
   cancel() {

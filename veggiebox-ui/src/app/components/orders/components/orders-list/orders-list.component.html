@@ -1,11 +1,10 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Kunde</th>
-      <th scope="col">Betrag</th>
-      <th scope="col">Kaufdatum</th>
-      <th scope="col">Toggled</th>
+      <th scope="col" class="order_number">#</th>
+      <th scope="col" class="order_customer">Kunde</th>
+      <th scope="col" class="order_sum">Betrag</th>
+      <th scope="col" class="order_date">Kaufdatum</th>
     </tr>
   </thead>
   <tbody>
@@ -13,11 +12,31 @@
       <tr (click)="order.toggled = !order.toggled" class="cursor-pointer">
         <th scope="col">{{ order.id }}</th>
         <td>{{ order.customer?.firstname }} {{ order.customer?.lastname }}</td>
-        <td>{{ order.sum | currency }}</td>
-        <td>{{ order.purchased | date }}</td>
-        <td>{{ order.toggled }}</td>
+        <td>
+          <ng-container *ngIf="!order.toggled; else show_detail">
+            <td>{{ order.sum | currency: "EUR" }}</td>
+          </ng-container>
+          <ng-template #show_detail>
+            <ng-container
+              *ngTemplateOutlet="order_details; context: order"
+            ></ng-container>
+          </ng-template>
+        </td>
+        <td>{{ order.purchased | date: "dd.MM.yyyy" }}</td>
       </tr>
-      <div *ngIf="order.toggled">Details</div>
     </ng-container>
   </tbody>
 </table>
+
+<ng-template #order_details let-details="details" let-sum="sum">
+  <table>
+    <tr *ngFor="let detail of details">
+      <td class="pe-4">{{ detail.name }}</td>
+      <td class="text-end">{{ detail.price | currency: "EUR" }}</td>
+    </tr>
+    <tr>
+      <th>Summe:</th>
+      <th>{{ sum | currency: "EUR" }}</th>
+    </tr>
+  </table>
+</ng-template>

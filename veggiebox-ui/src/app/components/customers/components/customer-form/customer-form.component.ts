@@ -26,7 +26,6 @@ export class CustomerFormComponent {
 
   @Input()
   set customer(customer: CustomerDto) {
-    console.log('Customer initialized: ', customer);
     this.create = customer == null;
     this.initializeForm(customer);
   }
@@ -80,7 +79,5 @@ export class CustomerFormComponent {
       ]),
       phone: new FormControl(customer?.phone ?? null),
     });
-    console.log('Form initialized with value: ', this.form.value);
-    console.log('Form initialized with create: ', this.create);
   }
 }
