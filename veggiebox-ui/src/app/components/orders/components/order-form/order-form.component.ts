@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CustomersService } from '../../../customers/services/customers.service';
 import { map, Observable } from 'rxjs';
 import { CustomerDto, ProductDto } from '@openapi/generated';
@@ -20,6 +20,7 @@ export type ProductSelectItem = ProductDto & SelectItem;
   selector: 'app-order-form',
   templateUrl: './order-form.component.html',
   styleUrl: './order-form.component.scss',
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class OrderFormComponent {
   form!: FormGroup;
@@ -27,6 +28,7 @@ export class OrderFormComponent {
   submitted = false;
   customers$: Observable<CustomerSelectItem[]>;
   products$: Observable<ProductSelectItem[]>;
+  sum$!: Observable<number | null>;
 
   constructor(
     private customerService: CustomersService,
@@ -64,23 +66,29 @@ export class OrderFormComponent {
       this.submitted = true;
       return;
     }
-    console.log('Form submitted: ', this.form.value);
-    await this.orderService.addOrder({
+    const order = {
       customer: {
         id: this.form.value.customerId,
       },
-      details: [
-        {
-          id: this.form.value.productId,
-          quantity: this.form.value.productAmount,
-        },
-      ],
-    });
+      details: this.products.value.map((p) => {
+        return {
+          id: p.product.id,
+          quantity: p.productAmount,
+        };
+      }),
+    };
+    console.log('Form will be submitted with value: ', order);
+    await this.orderService.addOrder(order);
+  }
+
+  cancel() {
+    this.submitted = false;
+    this.initializeForm();
   }
 
   addProduct() {
     const productForm = this.fb.group({
-      productId: new FormControl<number | null>(null, Validators.required),
+      product: new FormControl<ProductDto | null>(null, Validators.required),
       productAmount: new FormControl<number | null>(null, Validators.required),
     });
     this.products.push(productForm);
@@ -94,11 +102,35 @@ export class OrderFormComponent {
     return this.form.controls['products'] as FormArray<FormGroup>;
   }
 
+  priceProduct(index: number) {
+    const prod = this.products.at(index).value;
+    const price = this.calcPrice(prod?.product?.price, prod?.productAmount);
+    console.log('Product price: ', price);
+    return price;
+  }
+
+  private calcPrice(productPrice: number | null, prodcutAmount: number | null) {
+    const price = productPrice ?? 0;
+    const amount = prodcutAmount ?? 0;
+    return price * +amount;
+  }
+
   private initializeForm(): void {
     this.form = this.fb.group({
       customerId: new FormControl<number | null>(null, [Validators.required]),
       products: this.fb.array([]),
     });
     this.addProduct();
+    this.sum$ = this.products.valueChanges.pipe(
+      map((products) => {
+        let sum = 0;
+        products.forEach((product) => {
+          if (product.product?.price != null && product.productAmount != null) {
+            sum += product.product.price * product.productAmount;
+          }
+        });
+        return sum;
+      }),
+    );
   }
 }

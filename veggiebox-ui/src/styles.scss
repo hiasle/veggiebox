@@ -3,15 +3,31 @@
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/@ng-select/ng-select/themes/default.theme.css";
 
-ng-select.ng-invalid.ng-touched .ng-select-container {
+ng-select.ng-invalid.ng-touched .ng-select-container,
+ng-select.ng-invalid.ng-submitted .ng-select-container {
   border-color: var(--bs-form-invalid-border-color);
 }
 
+ng-select.ng-valid.ng-submitted .ng-select-container {
+  border-color: var(--bs-form-valid-border-color);
+}
+
+//$theme-colors: (
+//  // primary: $gray-600,
+//  // primary: $teal;
+//  // primary: $green
+//  primary: #157347
+//);
+
 $theme-colors: (
-  // primary: $gray-600,
-  // primary: $teal;
-  // primary: $green
-  primary: $green
+  "primary": $green,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark,
 );
 
 @import "../node_modules/bootstrap/scss/bootstrap";

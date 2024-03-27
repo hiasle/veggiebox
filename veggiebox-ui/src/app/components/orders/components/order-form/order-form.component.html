@@ -5,6 +5,7 @@
       <!--         labelForId="customer-select" -->
       <ng-select
         [items]="customers$ | async"
+        [class.ng-submitted]="submitted"
         bindLabel="label"
         dropdownPosition="auto"
         bindValue="id"
@@ -27,7 +28,11 @@
       >
         + Produkt hinzufügen
       </button>
-      <button type="button" class="btn btn-outline-primary btn-sm me-2">
+      <button
+        type="button"
+        class="btn btn-outline-primary btn-sm me-2"
+        (click)="cancel()"
+      >
         Abbrechen
       </button>
       <button type="submit" class="btn btn-primary btn-sm">Speichern</button>
@@ -40,15 +45,19 @@
         <div class="col align-top">
           <ng-select
             [items]="products$ | async"
+            [class.ng-submitted]="submitted"
             bindLabel="label"
             dropdownPosition="auto"
-            bindValue="id"
             placeholder="Produkt auswählen..."
-            formControlName="productId"
+            formControlName="product"
           >
             <ng-template ng-option-tmp let-item="item">
-              <div>
-                <span>{{ item.label }}</span>
+              <div class="d-flex">
+                <div class="fw-bold">{{ item.name }}</div>
+                <div class="ms-2 me-2">|</div>
+                <div class="fst-italic text-capitalize">{{ item.unit }}</div>
+                <div class="ms-2 me-2">|</div>
+                <div class="fst-italic">{{ item.price }}€</div>
               </div>
             </ng-template>
           </ng-select>
@@ -63,7 +72,15 @@
           [showValidationErrorsInstant]="submitted"
         ></custom-form-input>
 
-        <div class="col-md-2 align-top d-flex justify-content-end">
+        <div class="col-md-2 align-top d-flex justify-content-between">
+          <div
+            class="badge rounded-pill bg-secondary-subtle d-flex align-items-center"
+          >
+            <div class="text-dark fs-6 font-monospace">
+              {{ priceProduct(i) | currency: "EUR" }}
+            </div>
+          </div>
+
           <button
             type="button"
             class="btn btn-primary btn-sm"
@@ -76,8 +93,15 @@
     </ng-container>
   </ng-container>
 
-  <div class="row">
+  <div class="row ps-4 mb-2">
     <div class="col"></div>
-    <div class="col d-flex justify-content-end"></div>
+    <div class="col-md-2">
+      <div
+        *ngIf="sum$ | async as summe"
+        class="badge rounded-pill bg-success text-dark fs-6 font-monospace"
+      >
+        {{ summe | currency: "EUR" }}
+      </div>
+    </div>
   </div>
 </form>
