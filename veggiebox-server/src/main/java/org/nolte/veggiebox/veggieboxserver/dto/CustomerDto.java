@@ -19,4 +19,6 @@ public class CustomerDto {
 
     String phone;
 
+    boolean deletable;
+
 }

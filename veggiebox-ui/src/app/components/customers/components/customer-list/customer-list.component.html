@@ -16,12 +16,21 @@
       aria-label="Toolbar with button groups"
     >
       <div class="btn-group me-2" role="group" aria-label="First group">
-        <div class="btn btn-outline-primary" (click)="edit(customer)">
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          (click)="edit(customer)"
+        >
           <fa-icon [icon]="faPencil"></fa-icon>
-        </div>
-        <div class="btn btn-outline-primary" (click)="delete(customer)">
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          [disabled]="!customer.deletable"
+          (click)="delete(customer)"
+        >
           <fa-icon [icon]="faTrash"></fa-icon>
-        </div>
+        </button>
       </div>
     </div>
   </div>

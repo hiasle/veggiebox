@@ -17,5 +17,6 @@ export interface CustomerDto {
     firstname?: string;
     lastname?: string;
     phone?: string;
+    deletable?: boolean;
 }
 

@@ -38,7 +38,11 @@ public class CustomerController {
     @GetMapping
     public ResponseEntity<List<CustomerDto>> getCustomers() {
         return ResponseEntity.ok(customerService.getCustomers().stream()
-                .map(entity -> mapper.map(entity, CustomerDto.class)).collect(Collectors.toList()));
+                .map(entity -> {
+                    CustomerDto customerDto = mapper.map(entity, CustomerDto.class);
+                    customerDto.setDeletable(entity.getOrders().isEmpty());
+                    return customerDto;
+                }).collect(Collectors.toList()));
     }
 
     @GetMapping("/{id}")
