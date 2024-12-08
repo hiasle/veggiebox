@@ -1,13 +1,12 @@
 package org.nolte.veggiebox.veggieboxserver;
 
-import org.antlr.v4.runtime.atn.SemanticContext;
+import org.modelmapper.ModelMapper;
 import org.nolte.veggiebox.veggieboxserver.customer.CustomerService;
 import org.nolte.veggiebox.veggieboxserver.entities.Customer;
 import org.nolte.veggiebox.veggieboxserver.entities.Order;
 import org.nolte.veggiebox.veggieboxserver.entities.OrderDetail;
 import org.nolte.veggiebox.veggieboxserver.entities.Product;
 import org.nolte.veggiebox.veggieboxserver.entities.enums.Unit;
-import org.nolte.veggiebox.veggieboxserver.order.OrderRepository;
 import org.nolte.veggiebox.veggieboxserver.order.OrderService;
 import org.nolte.veggiebox.veggieboxserver.product.ProductService;
 import org.slf4j.Logger;
@@ -17,11 +16,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Component
 public class AppRunner implements CommandLineRunner {
@@ -33,7 +30,7 @@ public class AppRunner implements CommandLineRunner {
 
     private final OrderService orderService;
 
-    public AppRunner(CustomerService customerService, ProductService productService, OrderService orderService) {
+    public AppRunner(CustomerService customerService, ProductService productService, OrderService orderService, ModelMapper modelMapper) {
         this.customerService = customerService;
         this.productService = productService;
         this.orderService = orderService;
@@ -45,7 +42,6 @@ public class AppRunner implements CommandLineRunner {
         productService.createOrSaveProduct(new Product(UUID.randomUUID().toString(), "Apfel", Unit.kiste, 5.0f));
         productService.createOrSaveProduct(new Product(UUID.randomUUID().toString(), "Kartoffel", Unit.kilogramm, 5.0f));
         productService.createOrSaveProduct(new Product(UUID.randomUUID().toString(), "Saft", Unit.flasche, 1f, "Apfelsaft"));
-
 
         OrderDetail appleOrder = new OrderDetail();
         appleOrder.setName("Äpfel");

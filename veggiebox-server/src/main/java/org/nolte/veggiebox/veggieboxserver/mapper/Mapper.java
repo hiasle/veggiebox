@@ -9,7 +9,17 @@ public class Mapper {
 
     @Bean
     public ModelMapper modelMapper() {
-        return new ModelMapper();
+        ModelMapper modelMapper = new ModelMapper();
+//        modelMapper.getConfiguration()
+//                .setFieldMatchingEnabled(true)
+//                .setFieldAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PRIVATE);
+//        modelMapper.addMappings(new PropertyMap<Customer, CustomerDto>() {
+//            @Override
+//            protected void configure() {
+//                 map().setDeletable(source.getOrders() == null || source.getOrders().isEmpty());
+//            }
+//        });
+        return modelMapper;
     }
 
 }

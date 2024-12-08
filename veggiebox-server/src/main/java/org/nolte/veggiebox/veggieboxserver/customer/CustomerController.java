@@ -39,9 +39,9 @@ public class CustomerController {
     public ResponseEntity<List<CustomerDto>> getCustomers() {
         return ResponseEntity.ok(customerService.getCustomers().stream()
                 .map(entity -> {
-                    CustomerDto customerDto = mapper.map(entity, CustomerDto.class);
-                    customerDto.setDeletable(entity.getOrders().isEmpty());
-                    return customerDto;
+                    CustomerDto dto = mapper.map(entity, CustomerDto.class);
+                    dto.setDeletable(entity.getOrders() == null || entity.getOrders().isEmpty());
+                    return dto;
                 }).collect(Collectors.toList()));
     }
 
