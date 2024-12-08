@@ -5,19 +5,18 @@ import { ApiModule, BASE_PATH } from './openapi';
 import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, SidebarComponent, ApiModule],
-  providers: [
-    { provide: BASE_PATH, useValue: 'http://localhost:8080' },
-    {
-      provide: DATE_PIPE_DEFAULT_OPTIONS,
-      useValue: { dateFormat: 'dd.MM.yyyy' },
-    },
-    { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
-  ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+    selector: 'app-root',
+    imports: [RouterOutlet, SidebarComponent, ApiModule],
+    providers: [
+        { provide: BASE_PATH, useValue: 'http://localhost:8080' },
+        {
+            provide: DATE_PIPE_DEFAULT_OPTIONS,
+            useValue: { dateFormat: 'dd.MM.yyyy' },
+        },
+        { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
+    ],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'veggiebox-ui';

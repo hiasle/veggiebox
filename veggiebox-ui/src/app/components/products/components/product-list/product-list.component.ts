@@ -11,10 +11,11 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, lastValueFrom } from 'rxjs';
 
 @Component({
-  selector: 'app-product-list',
-  templateUrl: './product-list.component.html',
-  styleUrl: './product-list.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-product-list',
+    templateUrl: './product-list.component.html',
+    styleUrl: './product-list.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ProductListComponent implements OnInit, OnDestroy {
   faTrash = faTrashCan;

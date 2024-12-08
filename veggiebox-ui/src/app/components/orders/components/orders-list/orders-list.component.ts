@@ -8,9 +8,10 @@ export type UiItem = { toggled: boolean };
 export type OrderUiItem = OrderDto & UiItem;
 
 @Component({
-  selector: 'app-orders-list',
-  templateUrl: './orders-list.component.html',
-  styleUrl: './orders-list.component.scss',
+    selector: 'app-orders-list',
+    templateUrl: './orders-list.component.html',
+    styleUrl: './orders-list.component.scss',
+    standalone: false
 })
 export class OrdersListComponent implements OnInit {
   orders$ = new BehaviorSubject<OrderUiItem[]>([]);

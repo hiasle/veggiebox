@@ -15,11 +15,10 @@ import { lastValueFrom } from 'rxjs';
 import { FormsSharedModule } from '@shared/forms';
 
 @Component({
-  selector: 'app-customer-form',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsSharedModule],
-  templateUrl: './customer-form.component.html',
-  styleUrl: './customer-form.component.scss',
+    selector: 'app-customer-form',
+    imports: [CommonModule, ReactiveFormsModule, FormsSharedModule],
+    templateUrl: './customer-form.component.html',
+    styleUrl: './customer-form.component.scss'
 })
 export class CustomerFormComponent {
   form!: FormGroup;

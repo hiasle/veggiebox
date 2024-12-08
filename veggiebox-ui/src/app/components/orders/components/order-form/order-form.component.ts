@@ -18,10 +18,11 @@ export type CustomerSelectItem = CustomerDto & SelectItem;
 export type ProductSelectItem = ProductDto & SelectItem;
 
 @Component({
-  selector: 'app-order-form',
-  templateUrl: './order-form.component.html',
-  styleUrl: './order-form.component.scss',
-  changeDetection: ChangeDetectionStrategy.Default,
+    selector: 'app-order-form',
+    templateUrl: './order-form.component.html',
+    styleUrl: './order-form.component.scss',
+    changeDetection: ChangeDetectionStrategy.Default,
+    standalone: false
 })
 export class OrderFormComponent {
   form!: FormGroup;

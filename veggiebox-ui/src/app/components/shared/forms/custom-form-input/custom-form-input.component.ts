@@ -15,18 +15,17 @@ import {
 export type InputType = 'text' | 'number' | 'textarea';
 
 @Component({
-  selector: 'custom-form-input',
-  templateUrl: './custom-form-input.component.html',
-  styleUrl: './custom-form-input.component.scss',
-  standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CustomFormInputComponent),
-      multi: true,
-    },
-  ],
+    selector: 'custom-form-input',
+    templateUrl: './custom-form-input.component.html',
+    styleUrl: './custom-form-input.component.scss',
+    imports: [CommonModule, FormsModule, ReactiveFormsModule],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => CustomFormInputComponent),
+            multi: true,
+        },
+    ]
 })
 export class CustomFormInputComponent implements OnInit, ControlValueAccessor {
   @Input()

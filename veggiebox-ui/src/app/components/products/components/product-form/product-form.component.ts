@@ -14,10 +14,11 @@ import { v4 as uuidv4 } from 'uuid';
 import { lastValueFrom } from 'rxjs';
 
 @Component({
-  selector: 'app-product-form',
-  templateUrl: './product-form.component.html',
-  styleUrl: './product-form.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-product-form',
+    templateUrl: './product-form.component.html',
+    styleUrl: './product-form.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ProductFormComponent {
   form!: FormGroup;
