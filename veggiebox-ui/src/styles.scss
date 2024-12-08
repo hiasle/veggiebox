@@ -1,7 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/@ng-select/ng-select/themes/default.theme.css";
+@use "../node_modules/bootstrap/scss/functions";
+@use "../node_modules/bootstrap/scss/variables";
+@use "../node_modules/@ng-select/ng-select/themes/default.theme.css";
+@use "../node_modules/bootstrap/scss/bootstrap";
 
 ng-select.ng-invalid.ng-touched .ng-select-container,
 ng-select.ng-invalid.ng-submitted .ng-select-container {
@@ -29,8 +30,6 @@ $theme-colors: (
   "light": $light,
   "dark": $dark,
 );
-
-@import "../node_modules/bootstrap/scss/bootstrap";
 
 /* https://colors.muz.li/palette/486255/624f48/453732/494d62/333645 */
 $primary: #486255;
